@@ -15,7 +15,7 @@ def recv_json_lines(sock):
         if line:
             yield json.loads(line) 
 
-# 自动求解 Roman Numerals
+# Automatically solve Roman Numerals
 def roman_to_int(s):
     vals = {"I":1,"V":5,"X":10,"L":50,"C":100,"D":500,"M":1000}
     total = 0
@@ -29,7 +29,7 @@ def roman_to_int(s):
         prev = v
     return total
 
-# 自动求解 IP 地址题
+# Automatically solve IP address questions
 def ip_to_int(ip):
     a,b,c,d = map(int, ip.split("."))
     return (a<<24)|(b<<16)|(c<<8)|d
@@ -63,12 +63,12 @@ def auto_answer(qtype, short):
     return "0"
 
 def main():
-    print("🤖 自动客户端启动...")
+    print("🤖 Auto client starting...")
 
     sock = socket.socket()
     sock.connect(("127.0.0.1", 7777))
 
-    print("✅ 已连接服务器，发送 HI...")
+    print("✅ Connected to server, sending HI...")
     send_json(sock, {"message_type": "HI", "username": "auto_client"})
 
     for msg in recv_json_lines(sock):
@@ -76,23 +76,23 @@ def main():
         mtype = msg["message_type"]
 
         if mtype == "READY":
-            print("✅ 服务器已准备好:", msg["info"])
+            print("✅ Server is ready:", msg["info"])
 
         elif mtype == "QUESTION":
             qtype = msg["question_type"]
             short = msg["short_question"]
 
-            print("\n📘 收到题目:", msg["trivia_question"])
+            print("\n📘 Received question:", msg["trivia_question"])
             ans = auto_answer(qtype, short)
 
-            print("🧠 自动回答:", ans)
+            print("🧠 Auto answer:", ans)
             send_json(sock, {"message_type": "ANSWER", "answer": ans})
 
         elif mtype == "RESULT":
-            print("📌 结果:", msg["feedback"])
+            print("📌 Result:", msg["feedback"])
 
         elif mtype == "FINISHED":
-            print("\n🏁 游戏结束！")
+            print("\n🏁 Game finished!")
             print(msg["final_standings"])
             break
 
