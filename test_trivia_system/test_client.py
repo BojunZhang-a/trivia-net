@@ -8,7 +8,7 @@ import signal
 def test_client_connects():
     print("\n🔧 [TEST] Client CONNECT test")
 
-    # ✅ 启动 server
+    # ✅ Start server
     server = subprocess.Popen(
         ["python", "server.py", "--config", "test_trivia_system/configs/server_test.json"],
         stdout=subprocess.PIPE,
@@ -18,7 +18,7 @@ def test_client_connects():
 
     time.sleep(1.2)
 
-    # ✅ 启动 client（YOU 模式）
+    # ✅ Start client (YOU mode)
     client = subprocess.Popen(
         ["python", "client.py", "--config", "test_trivia_system/configs/client_you_test.json"],
         stdin=subprocess.PIPE,
@@ -27,22 +27,22 @@ def test_client_connects():
         text=True
     )
 
-    # ✅ 发送 CONNECT 指令
+    # ✅ Send CONNECT command
     try:
         client.stdin.write("CONNECT 127.0.0.1:7777\n")
         client.stdin.flush()
     except Exception as e:
         print("❌ Failed to write to client:", e)
 
-    # ✅ 等待一段时间让 client 打印 READY
+    # ✅ Wait for the client to print READY
     time.sleep(1.5)
 
-    # ✅ 尝试非阻塞读取（communicate 有 timeout）
+    # ✅ Try non-blocking read (communicate with timeout)
     output = ""
     try:
         output, _ = client.communicate(timeout=0.5)
     except subprocess.TimeoutExpired:
-        # 说明 client 还没退出 → 强制停止
+        # Client did not exit → kill the process
         client.kill()
         try:
             out2, _ = client.communicate(timeout=0.2)
@@ -50,12 +50,12 @@ def test_client_connects():
         except:
             pass
 
-    # ✅ 停止 server
+    # ✅ Stop server
     server.kill()
 
     print(output)
 
-    # ✅ 判断结果
+    # ✅ Check result
     if "Player connected" in output:
         print("✅ Client CONNECT test passed")
     else:
