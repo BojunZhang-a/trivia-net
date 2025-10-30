@@ -4,11 +4,11 @@ import time
 import sys
 
 # ============================
-# Trivia.NET 集成测试脚本
+# Trivia.NET Integration Test Script
 # ============================
 
 def wait_for_port(host, port, timeout=5):
-    """等待服务器端口开放"""
+    """Wait until the server port is open"""
     start = time.time()
     while time.time() - start < timeout:
         try:
@@ -25,7 +25,7 @@ def wait_for_port(host, port, timeout=5):
 def test_integration():
     print("🔧 [TEST] Starting Trivia.NET integration test", flush=True)
 
-    # 1️⃣ 启动服务器
+    # 1️⃣ Start the server
     server_cmd = ["python", "server.py", "--config", "test_trivia_system/configs/server_test.json"]
     server = subprocess.Popen(
         server_cmd,
@@ -44,9 +44,9 @@ def test_integration():
         server.terminate()
         return
 
-    print("✅ Server listening on 7777", flush=True)
+    print("✅ Server is listening on port 7777", flush=True)
 
-    # 2️⃣ 启动客户端（AUTO 模式）
+    # 2️⃣ Start the client (AUTO mode)
     client_cmd = [
         "python", "client.py",
         "--config", "test_trivia_system/configs/client_auto_test.json"
@@ -61,9 +61,9 @@ def test_integration():
         errors="ignore"
     )
 
-    print("🔧 [TEST] Client launched, waiting for game...", flush=True)
+    print("🔧 [TEST] Client launched, waiting for gameplay...", flush=True)
 
-    # 3️⃣ 捕获客户端输出直到 FINISHED
+    # 3️⃣ Capture client output until FINISHED appears
     finished = False
     start_time = time.time()
 
@@ -79,7 +79,7 @@ def test_integration():
             finished = True
             break
 
-    # 4️⃣ 关闭进程
+    # 4️⃣ Terminate processes
     client.terminate()
     server.terminate()
 
