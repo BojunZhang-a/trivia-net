@@ -16,7 +16,7 @@ SERVER_CMD = [
 def test_server_starts():
     print("🔧 [TEST] Starting server...")
 
-    # 启动服务器
+    # Start the server
     p = subprocess.Popen(
         SERVER_CMD,
         stdout=subprocess.PIPE,
@@ -24,7 +24,7 @@ def test_server_starts():
         text=True
     )
 
-    time.sleep(1.5)  # 给服务器一点时间启动
+    time.sleep(1.5)  # Give the server some time to initialize
 
     ok = False
     try:
@@ -37,7 +37,7 @@ def test_server_starts():
         print("⚠️ Connection error:", e)
         ok = False
 
-    # 关闭服务器进程
+    # Terminate the server process
     p.terminate()
 
     if ok:
