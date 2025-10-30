@@ -1,7 +1,7 @@
 import sys
 from pathlib import Path
 
-# ✅ 添加项目根目录，使得能 import client.py
+# ✅ Add project root so client.py can be imported
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT))
 
