@@ -1,0 +1,5 @@
+{
+    "username": "player_auto",
+    "client_mode": "auto",
+    "auto_connect_port": 7777
+}

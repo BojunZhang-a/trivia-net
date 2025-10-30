@@ -1,0 +1,28 @@
+{
+    "port": 7777,
+    "players": 1,
+    "question_seconds": 8,
+    "question_interval_seconds": 3,
+    "question_word": "Question",
+    "question_types": [
+      "Mathematics",
+      "Roman Numerals",
+      "Usable IP Addresses of a Subnet",
+      "Network and Broadcast Address of a Subnet"
+    ],
+    "question_formats": {
+      "Mathematics": "{}",
+      "Roman Numerals": "{}",
+      "Usable IP Addresses of a Subnet": "{}",
+      "Network and Broadcast Address of a Subnet": "{}"
+    },
+    "correct_answer": "✅ Correct! Your answer ({answer}) is right.",
+    "incorrect_answer": "❌ Incorrect. You answered ({answer}), but the correct answer is {correct_answer}.",
+    "points_noun_singular": "point",
+    "points_noun_plural": "points",
+    "ready_info": "✅ Player connected! Game will start in {question_interval_seconds} seconds.",
+    "final_standings_heading": "🏁 Final Standings",
+    "one_winner": "🎉 Winner: {}",
+    "multiple_winners": "🎉 Winners: {}"
+  }
+  

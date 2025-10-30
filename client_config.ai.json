@@ -1,0 +1,9 @@
+{
+    "username": "player_ai",
+    "client_mode": "ai",
+    "ollama_config": {
+        "ollama_host": "127.0.0.1",
+        "ollama_port": 11434,
+        "ollama_model": "qwen2.5:0.5b"
+    }
+}

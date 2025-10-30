@@ -1,0 +1,23 @@
+{
+    "port": 7777,
+    "players": 1,
+    "question_seconds": 2,
+    "question_interval_seconds": 1,
+    "question_word": "Question",
+    "question_types": [
+        "Mathematics",
+        "Roman Numerals"
+    ],
+    "question_formats": {
+        "Mathematics": "{}",
+        "Roman Numerals": "{}"
+    },
+    "correct_answer": "Correct ({answer})",
+    "incorrect_answer": "Wrong ({answer}), correct is {correct_answer}",
+    "points_noun_singular": "point",
+    "points_noun_plural": "points",
+    "ready_info": "Player connected",
+    "final_standings_heading": "Final Standings",
+    "one_winner": "Winner: {}",
+    "multiple_winners": "Winners: {}"
+}
